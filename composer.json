@@ -11,7 +11,7 @@
   "minimum-stability": "dev",
   "require": {
     "illuminate/database": "^6.3",
-    "php7lab/core": "^v0.0.7"
+    "zncore/base": "^v0.0.1"
   },
   "autoload": {
     "psr-4": {
