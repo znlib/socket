@@ -1,0 +1,22 @@
+{
+  "name": "znlib/socket",
+  "type": "extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yamshikov Vitaliy",
+      "email": "theyamshikov@yandex.ru"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "illuminate/database": "^6.3",
+    "php7lab/core": "^v0.0.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "PhpLab\\Socket\\": "src",
+      "PhpLab\\Socket\\Tests\\": "tests"
+    }
+  }
+}
