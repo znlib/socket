@@ -17,7 +17,9 @@
   "autoload": {
     "psr-4": {
       "PhpLab\\Socket\\": "src",
-      "PhpLab\\Socket\\Tests\\": "tests"
+      "PhpLab\\Socket\\Tests\\": "tests",
+      "ZnLib\\Socket\\": "src",
+      "ZnLib\\Socket\\Tests\\": "tests"
     }
   }
 }
