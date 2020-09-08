@@ -11,7 +11,7 @@
   "minimum-stability": "dev",
   "require": {
     "illuminate/database": "^6.3",
-    "zncore/base": "^v0.0.1",
+    "zncore/base": "^v0.0.3",
     "workerman/workerman": "v4.0.6"
   },
   "autoload": {
