@@ -10,14 +10,11 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "illuminate/database": "^6.3",
     "zncore/base": "v0.0.*",
     "workerman/workerman": "v4.0.6"
   },
   "autoload": {
     "psr-4": {
-      "PhpLab\\Socket\\": "src",
-      "PhpLab\\Socket\\Tests\\": "tests",
       "ZnLib\\Socket\\": "src",
       "ZnLib\\Socket\\Tests\\": "tests"
     }
