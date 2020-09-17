@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+use ZnLib\Socket\Domain\Entities\SocketEventEntity;
+use ZnLib\Socket\Domain\Enums\SocketEventEnum;
+use Symfony\Component\Console\Application;
+use ZnCore\Base\Libs\Env\DotEnvHelper;
+use Illuminate\Container\Container;
+
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Workerman\Connection\ConnectionInterface;
+use Workerman\Worker;
+use ZnLib\Socket\Domain\Libs\SocketDaemon;
+
+require __DIR__ . '/../../../autoload.php';
+DotEnvHelper::init();
+// __DIR__ . '/bootstrap.php';
+
+$container = Container::getInstance();
+
+/** @var SocketDaemon $daemon */
+$daemon = $container->get(SocketDaemon::class);
+
+$event = new SocketEventEntity;
+$event->setUserId(377819118);
+$event->setName(SocketEventEnum::MESSAGE);
+$event->setData(['message' => 'test']);
+
+$daemon->sendMessageToTcp($event);
