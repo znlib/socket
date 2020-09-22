@@ -1,6 +1,6 @@
 <?php
 
-namespace ZnLib\Socket\Symfony\Commands;
+namespace ZnLib\Socket\Symfony4\Commands;
 
 use ZnBundle\Messenger\Domain\Libs\WordClassificator;
 use Phpml\Classification\KNearestNeighbors;
