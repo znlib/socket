@@ -9,7 +9,7 @@ use ZnLib\Socket\Domain\Enums\SocketEventEnum;
 use ZnLib\Socket\Domain\Enums\SocketEventStatusEnum;
 use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;
 use Symfony\Component\Console\Application;
-use ZnCore\Base\Libs\Env\DotEnvHelper;
+use ZnCore\Base\Libs\DotEnv\DotEnv;
 use Illuminate\Container\Container;
 
 use Symfony\Component\Console\Input\InputInterface;

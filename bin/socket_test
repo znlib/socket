@@ -4,7 +4,7 @@
 use ZnLib\Socket\Domain\Entities\SocketEventEntity;
 use ZnLib\Socket\Domain\Enums\SocketEventEnum;
 use Symfony\Component\Console\Application;
-use ZnCore\Base\Libs\Env\DotEnvHelper;
+use ZnCore\Base\Libs\DotEnv\DotEnv;
 use Illuminate\Container\Container;
 
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +14,7 @@ use Workerman\Worker;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 
 require __DIR__ . '/../../../autoload.php';
-DotEnvHelper::init();
+DotEnv::init();
 // __DIR__ . '/bootstrap.php';
 
 $container = Container::getInstance();
