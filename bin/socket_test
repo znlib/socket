@@ -23,7 +23,7 @@ $container = Container::getInstance();
 $daemon = $container->get(SocketDaemon::class);
 
 $event = new SocketEventEntity;
-$event->setUserId(377819118);
+$event->setUserId(1);
 $event->setName(SocketEventEnum::MESSAGE);
 $event->setData(['message' => 'test']);
 
