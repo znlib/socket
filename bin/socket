@@ -1,14 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-use Symfony\Component\Console\Application;
-use ZnCore\Base\Libs\DotEnv\DotEnv;
 use Illuminate\Container\Container;
-
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Workerman\Connection\ConnectionInterface;
-use Workerman\Worker;
+use ZnCore\Base\Libs\DotEnv\DotEnv;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 
 require __DIR__ . '/../../../autoload.php';
@@ -22,7 +16,6 @@ $daemon = $container->get(SocketDaemon::class);
 
 //$daemon->init();
 $daemon->runAll();
-
 
 
 /*
