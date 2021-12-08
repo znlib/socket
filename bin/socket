@@ -17,14 +17,15 @@ $container = Container::getInstance();
 $znCore = new ZnCore($container);
 $znCore->init();
 
-$appFactory = $container->get(\ZnLib\Socket\Domain\Apps\ConsoleApp::class);
+$appFactory = $container->get(\ZnLib\Socket\Domain\Apps\WebSocketApp::class);
 $appFactory->init();
 
-$containerConfigurator = ContainerHelper::getContainerConfiguratorByContainer($container);
-$containerConfigurator->singleton(\ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface::class, function (\Psr\Container\ContainerInterface $container) {
-    /** @var \ZnBundle\User\Domain\Services\AuthService3 $authService */
-    $authService = $container->get(\ZnBundle\User\Domain\Services\AuthService3::class);
-    return $authService;
+$znCore->addContainerConfig(function (\ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface $containerConfigurator) {
+    $containerConfigurator->singleton(\ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface::class, function (\Psr\Container\ContainerInterface $container) {
+        /** @var \ZnBundle\User\Domain\Services\AuthService3 $authService */
+        $authService = $container->get(\ZnBundle\User\Domain\Services\AuthService3::class);
+        return $authService;
+    });
 });
 
 /** @var SocketDaemon $daemon */
