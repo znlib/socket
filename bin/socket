@@ -2,20 +2,60 @@
 <?php
 
 use Illuminate\Container\Container;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Libs\App\Factories\KernelFactory;
+use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
+use ZnSandbox\Sandbox\App\Libs\ZnCore;
+
+define('MICRO_TIME', microtime(true));
 
 require __DIR__ . '/../../../autoload.php';
-DotEnv::init();
-// __DIR__ . '/bootstrap.php';
 
 $container = Container::getInstance();
+$znCore = new ZnCore($container);
+$znCore->init();
+
+$appFactory = $container->get(\ZnLib\Socket\Domain\Apps\ConsoleApp::class);
+$appFactory->init();
+
+$containerConfigurator = ContainerHelper::getContainerConfiguratorByContainer($container);
+$containerConfigurator->singleton(\ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface::class, function (\Psr\Container\ContainerInterface $container) {
+    /** @var \ZnBundle\User\Domain\Services\AuthService3 $authService */
+    $authService = $container->get(\ZnBundle\User\Domain\Services\AuthService3::class);
+    return $authService;
+});
 
 /** @var SocketDaemon $daemon */
 $daemon = $container->get(SocketDaemon::class);
-
-//$daemon->init();
 $daemon->runAll();
+
+
+//dd($container->get(\ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface::class));
+
+//exit;
+//
+//
+//if (DotEnv::get('BUNDLES_CONFIG_FILE')) {
+//    $bundles = ArrayHelper::merge($bundles, include __DIR__ . '/../../../../' . DotEnv::get('BUNDLES_CONFIG_FILE'));
+//}
+//
+//$kernel = KernelFactory::createConsoleKernel($bundles, ['i18next', 'container', 'console', 'migration', 'symfonyRpc', 'telegramRoutes']);
+//
+//
+//dd($kernel);
+//
+//DotEnv::init();
+//// __DIR__ . '/bootstrap.php';
+//
+//$container = Container::getInstance();
+//
+///** @var SocketDaemon $daemon */
+//$daemon = $container->get(SocketDaemon::class);
+//
+////$daemon->init();
+//$daemon->runAll();
 
 
 /*

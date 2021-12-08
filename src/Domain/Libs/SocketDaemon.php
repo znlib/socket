@@ -2,31 +2,30 @@
 
 namespace ZnLib\Socket\Domain\Libs;
 
-use ZnCore\Domain\Helpers\EntityHelper;
-use ZnCore\Base\Exceptions\NotFoundException;
-use ZnLib\Socket\Domain\Entities\SocketEventEntity;
-use ZnLib\Socket\Domain\Enums\SocketEventEnum;
-use ZnLib\Socket\Domain\Enums\SocketEventStatusEnum;
-use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;
-use Symfony\Component\Console\Application;
-use ZnCore\Base\Libs\DotEnv\DotEnv;
-use Illuminate\Container\Container;
-
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Workerman\Connection\ConnectionInterface;
 use Workerman\Worker;
+use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Base\Exceptions\UnauthorizedException;
+use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
+use ZnCore\Domain\Helpers\EntityHelper;
+use ZnLib\Socket\Domain\Entities\SocketEventEntity;
+use ZnLib\Socket\Domain\Enums\SocketEventEnum;
+use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;
 
-class SocketDaemon {
+class SocketDaemon
+{
 
     private $users = [];
     private $tcpWorker;
     private $wsWorker;
     private $localUrl = 'tcp://127.0.0.1:1234';
     private $connectionRepository;
+    private $authService;
 
-    public function __construct(ConnectionRepository $connectionRepository)
+    public function __construct(ConnectionRepository $connectionRepository, AuthServiceInterface $authService)
     {
+        $this->authService = $authService;
         $this->connectionRepository = $connectionRepository;
         // массив для связи соединения пользователя и необходимого нам параметра
 
@@ -38,7 +37,8 @@ class SocketDaemon {
         $this->wsWorker->onClose = [$this, 'onWsClose'];
     }
 
-    public function sendMessageToTcp(SocketEventEntity $eventEntity) {
+    public function sendMessageToTcp(SocketEventEntity $eventEntity)
+    {
         // соединяемся с локальным tcp-сервером
         try {
             $instance = stream_socket_client($this->localUrl);
@@ -50,7 +50,8 @@ class SocketDaemon {
         }
     }
 
-    public function onWsStart() {
+    public function onWsStart()
+    {
         // создаём локальный tcp-сервер, чтобы отправлять на него сообщения из кода нашего сайта
         $this->tcpWorker = new Worker($this->localUrl);
         // создаём обработчик сообщений, который будет срабатывать,
@@ -59,13 +60,27 @@ class SocketDaemon {
         $this->tcpWorker->listen();
     }
 
-    public function onWsConnect(ConnectionInterface $connection) {
-        $connection->onWebSocketConnect = function($connection)
-        {
-            $userId = intval($_GET['userId']);
-            if(empty($userId)) {
-                throw new Exception('Empty user id;');
-            }
+    protected function auth($params): int
+    {
+        /*$userId = intval($params['userId']);
+        if (!empty($userId)) {
+            return $userId;
+        }*/
+
+        $token = $params['token'] ?? null;
+        if (!empty($token)) {
+            /** @var IdentityEntityInterface $identityEntity */
+            $identityEntity = $this->authService->authenticationByToken($token);
+            return $identityEntity->getId();
+        }
+
+        throw new UnauthorizedException('Empty user id');
+    }
+
+    public function onWsConnect(ConnectionInterface $connection)
+    {
+        $connection->onWebSocketConnect = function ($connection) {
+            $userId = $this->auth($_GET);
             // при подключении нового пользователя сохраняем get-параметр, который же сами и передали со страницы сайта
             $this->connectionRepository->addConnection($userId, $connection);
             // вместо get-параметра можно также использовать параметр из cookie, например $_COOKIE['PHPSESSID']
@@ -80,11 +95,13 @@ class SocketDaemon {
         };
     }
 
-    public function onWsClose(ConnectionInterface $connection) {
+    public function onWsClose(ConnectionInterface $connection)
+    {
         $this->connectionRepository->remove($connection);
     }
 
-    public function onTcpMessage(ConnectionInterface $connection, string $data) {
+    public function onTcpMessage(ConnectionInterface $connection, string $data)
+    {
         /** @var SocketEventEntity $eventEntity */
         $eventEntity = unserialize($data);
         $userId = $eventEntity->getUserId();
@@ -94,15 +111,18 @@ class SocketDaemon {
             foreach ($webconnections as $webconnection) {
                 $this->sendToWebSocket($eventEntity, $webconnection);
             }
-        } catch (NotFoundException $e) {}
+        } catch (NotFoundException $e) {
+        }
     }
 
-    public function runAll() {
+    public function runAll()
+    {
         // Run worker
         Worker::runAll();
     }
 
-    private function sendToWebSocket(SocketEventEntity $socketEventEntity, ConnectionInterface $connection) {
+    private function sendToWebSocket(SocketEventEntity $socketEventEntity, ConnectionInterface $connection)
+    {
         $eventArray = EntityHelper::toArray($socketEventEntity);
         $json = json_encode($eventArray);
         $connection->send($json);
