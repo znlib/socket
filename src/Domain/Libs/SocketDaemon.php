@@ -127,5 +127,4 @@ class SocketDaemon
         $json = json_encode($eventArray);
         $connection->send($json);
     }
-
 }
