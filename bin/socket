@@ -9,6 +9,7 @@ use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Apps\WebSocketApp;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 use ZnSandbox\Sandbox\App\Libs\ZnCore;
+use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
 
 define('MICRO_TIME', microtime(true));
 
@@ -18,15 +19,17 @@ $container = Container::getInstance();
 $znCore = new ZnCore($container);
 $znCore->init();
 
-$appFactory = $container->get(WebSocketApp::class);
+$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
+    $containerConfigurator->singleton(AppInterface::class, WebSocketApp::class);
+    
+});
+
+/** @var AppInterface $appFactory */
+$appFactory = $container->get(AppInterface::class);
 $appFactory->init();
 
 $znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
-    $containerConfigurator->singleton(AuthServiceInterface::class, function (ContainerInterface $container) {
-        /** @var AuthService3 $authService */
-        $authService = $container->get(AuthService3::class);
-        return $authService;
-    });
+    $containerConfigurator->singleton(AuthServiceInterface::class, AuthService3::class);
 });
 
 /** @var SocketDaemon $daemon */
