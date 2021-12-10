@@ -2,10 +2,11 @@
 <?php
 
 use Illuminate\Container\Container;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\App\Factories\KernelFactory;
-use ZnCore\Base\Libs\App\Helpers\ContainerHelper;
-use ZnCore\Base\Libs\DotEnv\DotEnv;
+use Psr\Container\ContainerInterface;
+use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnBundle\User\Domain\Services\AuthService3;
+use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
+use ZnLib\Socket\Domain\Apps\WebSocketApp;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 use ZnSandbox\Sandbox\App\Libs\ZnCore;
 
@@ -17,13 +18,13 @@ $container = Container::getInstance();
 $znCore = new ZnCore($container);
 $znCore->init();
 
-$appFactory = $container->get(\ZnLib\Socket\Domain\Apps\WebSocketApp::class);
+$appFactory = $container->get(WebSocketApp::class);
 $appFactory->init();
 
-$znCore->addContainerConfig(function (\ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface $containerConfigurator) {
-    $containerConfigurator->singleton(\ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface::class, function (\Psr\Container\ContainerInterface $container) {
-        /** @var \ZnBundle\User\Domain\Services\AuthService3 $authService */
-        $authService = $container->get(\ZnBundle\User\Domain\Services\AuthService3::class);
+$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
+    $containerConfigurator->singleton(AuthServiceInterface::class, function (ContainerInterface $container) {
+        /** @var AuthService3 $authService */
+        $authService = $container->get(AuthService3::class);
         return $authService;
     });
 });
@@ -31,45 +32,3 @@ $znCore->addContainerConfig(function (\ZnCore\Base\Libs\App\Interfaces\Container
 /** @var SocketDaemon $daemon */
 $daemon = $container->get(SocketDaemon::class);
 $daemon->runAll();
-
-
-//dd($container->get(\ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface::class));
-
-//exit;
-//
-//
-//if (DotEnv::get('BUNDLES_CONFIG_FILE')) {
-//    $bundles = ArrayHelper::merge($bundles, include __DIR__ . '/../../../../' . DotEnv::get('BUNDLES_CONFIG_FILE'));
-//}
-//
-//$kernel = KernelFactory::createConsoleKernel($bundles, ['i18next', 'container', 'console', 'migration', 'symfonyRpc', 'telegramRoutes']);
-//
-//
-//dd($kernel);
-//
-//DotEnv::init();
-//// __DIR__ . '/bootstrap.php';
-//
-//$container = Container::getInstance();
-//
-///** @var SocketDaemon $daemon */
-//$daemon = $container->get(SocketDaemon::class);
-//
-////$daemon->init();
-//$daemon->runAll();
-
-
-/*
- * Отправляем сообщение
-
-<?php
-$localsocket = 'tcp://127.0.0.1:1234';
-$user = 'tester01';
-$message = 'test';
-
-// соединяемся с локальным tcp-сервером
-$instance = stream_socket_client($localsocket);
-// отправляем сообщение
-fwrite($instance, json_encode(['user' => $user, 'message' => $message])  . "\n");
-
-*/
