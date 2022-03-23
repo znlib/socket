@@ -13,7 +13,7 @@ class WebSocketApp extends BaseWebSocketApp
     protected function bundles(): array
     {
         $bundles = [
-            \ZnLib\Db\Bundle::class,
+            \ZnDatabase\Base\Bundle::class,
         ];
         if (DotEnv::get('BUNDLES_CONFIG_FILE')) {
             $bundles = ArrayHelper::merge($bundles, include __DIR__ . '/../../../../../../' . DotEnv::get('BUNDLES_CONFIG_FILE'));
