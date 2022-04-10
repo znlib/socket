@@ -11,12 +11,12 @@ class SocketEventEntity {
     private $status = SocketEventStatusEnum::OK;
     private $data;
 
-    public function getUserId(): int
+    public function getUserId()//: int
     {
         return $this->userId;
     }
 
-    public function setUserId(int $userId): void
+    public function setUserId(/*int*/ $userId): void
     {
         $this->userId = $userId;
     }

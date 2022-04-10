@@ -10,25 +10,25 @@ class ConnectionRepository {
     // массив для связи соединения пользователя и необходимого нам параметра
     private $connectionTree = [];
 
-    public function allByUserId(int $userId) {
+    public function allByUserId(/*int*/ $userId) {
         if(!$this->isOnlineByUserId($userId)) {
             return [];
         }
         return $this->connectionTree[$userId];
     }
 
-    public function countByUserId(int $userId) {
+    public function countByUserId(/*int*/ $userId) {
         if(!$this->isOnlineByUserId($userId)) {
             return 0;
         }
         return count($this->connectionTree[$userId]);
     }
 
-    public function isOnlineByUserId(int $userId) {
+    public function isOnlineByUserId(/*int*/ $userId) {
         return isset($this->connectionTree[$userId]);
     }
 
-    public function addConnection(int $userId, ConnectionInterface $connection) {
+    public function addConnection(/*int*/ $userId, ConnectionInterface $connection) {
         $this->connectionTree[$userId][] = $connection;
         echo 'online ' . $userId . ' - ' . count($this->connectionTree[$userId]) . PHP_EOL;
     }
