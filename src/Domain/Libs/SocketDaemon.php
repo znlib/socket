@@ -60,7 +60,7 @@ class SocketDaemon
         $this->tcpWorker->listen();
     }
 
-    protected function auth($params): int
+    protected function auth($params)//: int
     {
         /*$userId = intval($params['userId']);
         if (!empty($userId)) {
