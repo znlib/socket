@@ -110,6 +110,7 @@ class SocketDaemon
             $webconnections = $this->connectionRepository->allByUserId($userId);
             foreach ($webconnections as $webconnection) {
                 $this->sendToWebSocket($eventEntity, $webconnection);
+                echo 'send '.hash('crc32b', $data).' to ' . $userId . PHP_EOL;
             }
         } catch (NotFoundException $e) {
         }
