@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+use Illuminate\Container\Container;
+use Psr\Container\ContainerInterface;
+use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
+use ZnBundle\User\Domain\Services\AuthService3;
+use ZnCore\Base\Libs\App\Interfaces\ContainerConfiguratorInterface;
+use ZnLib\Socket\Domain\Apps\WebSocketApp;
+use ZnLib\Socket\Domain\Libs\SocketIoDaemon as SocketDaemon;
+use ZnSandbox\Sandbox\App\Libs\ZnCore;
+use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
+
+define('MICRO_TIME', microtime(true));
+
+require __DIR__ . '/../../../autoload.php';
+
+$container = Container::getInstance();
+$znCore = new ZnCore($container);
+$znCore->init();
+
+$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
+    $containerConfigurator->singleton(AppInterface::class, WebSocketApp::class);
+    
+});
+
+/** @var AppInterface $appFactory */
+$appFactory = $container->get(AppInterface::class);
+$appFactory->init();
+
+$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
+    $containerConfigurator->singleton(AuthServiceInterface::class, AuthService3::class);
+});
+
+/** @var SocketDaemon $daemon */
+$daemon = $container->get(SocketDaemon::class);
+$daemon->runAll();
