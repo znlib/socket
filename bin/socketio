@@ -21,7 +21,6 @@ $znCore->init();
 
 $znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
     $containerConfigurator->singleton(AppInterface::class, WebSocketApp::class);
-    
 });
 
 /** @var AppInterface $appFactory */
