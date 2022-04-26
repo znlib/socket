@@ -4,7 +4,6 @@ namespace ZnLib\Socket\Domain\Apps;
 
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\DotEnv\DotEnv;
-use ZnLib\Console\Symfony4\Base\BaseConsoleApp;
 use ZnLib\Socket\Domain\Apps\Base\BaseWebSocketApp;
 
 class WebSocketApp extends BaseWebSocketApp
