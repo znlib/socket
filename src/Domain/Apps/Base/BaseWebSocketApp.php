@@ -41,7 +41,7 @@ abstract class BaseWebSocketApp extends BaseApp
 
     public function import(): array
     {
-        return ['i18next', 'container', 'console', 'migration', 'symfonyRpc', 'telegramRoutes'];
+        return ['i18next', 'container', 'console', 'migration', 'rbac', 'symfonyRpc', 'telegramRoutes'];
     }
 
     public function init(): void
