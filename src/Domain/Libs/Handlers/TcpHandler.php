@@ -7,7 +7,7 @@ use Workerman\Worker;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Enums\Measure\ByteEnum;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
+use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Domain\Helpers\EntityHelper;

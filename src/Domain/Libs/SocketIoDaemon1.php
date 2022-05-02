@@ -6,7 +6,7 @@ use Workerman\Connection\ConnectionInterface;
 use Workerman\Worker;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
-use ZnBundle\User\Domain\Exceptions\UnauthorizedException;
+use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Socket\Domain\Entities\SocketEventEntity;
