@@ -17,7 +17,7 @@ require __DIR__ . '/../../../autoload.php';
 DotEnv::init();
 // __DIR__ . '/bootstrap.php';
 
-$container = Container::getInstance();
+$container = new Container();
 
 /** @var SocketDaemon $daemon */
 $daemon = $container->get(SocketDaemon::class);

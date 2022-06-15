@@ -15,7 +15,7 @@ define('MICRO_TIME', microtime(true));
 
 require __DIR__ . '/../../../autoload.php';
 
-$container = Container::getInstance();
+$container = new Container();
 $znCore = new ZnCore($container);
 $znCore->init();
 
