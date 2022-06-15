@@ -19,18 +19,24 @@ $container = new Container();
 $znCore = new ZnCore($container);
 $znCore->init();
 
-$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
+/** @var ContainerConfiguratorInterface $containerConfigurator */
+$containerConfigurator = $container->get(ContainerConfiguratorInterface::class);
+
+$containerConfigurator->singleton(AppInterface::class, WebSocketApp::class);
+/*$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
     $containerConfigurator->singleton(AppInterface::class, WebSocketApp::class);
     
-});
+});*/
 
 /** @var AppInterface $appFactory */
 $appFactory = $container->get(AppInterface::class);
 $appFactory->init();
 
-$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
+
+$containerConfigurator->singleton(AuthServiceInterface::class, AuthService3::class);
+/*$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
     $containerConfigurator->singleton(AuthServiceInterface::class, AuthService3::class);
-});
+});*/
 
 /** @var SocketDaemon $daemon */
 $daemon = $container->get(SocketDaemon::class);
