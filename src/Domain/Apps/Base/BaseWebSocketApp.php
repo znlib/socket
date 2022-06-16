@@ -9,6 +9,7 @@ use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 use ZnSandbox\Sandbox\App\Base\BaseApp;
 use ZnSandbox\Sandbox\App\Libs\ZnCore;
+use ZnSandbox\Sandbox\App\Subscribers\ConsoleDetectTestEnvSubscriber;
 
 abstract class BaseWebSocketApp extends BaseApp
 {
@@ -30,6 +31,13 @@ abstract class BaseWebSocketApp extends BaseApp
     public function appName(): string
     {
         return 'webSocket';
+    }
+
+    public function subscribes(): array
+    {
+        return [
+            ConsoleDetectTestEnvSubscriber::class,
+        ];
     }
 
     /*public function subscribes(): array
@@ -54,11 +62,6 @@ abstract class BaseWebSocketApp extends BaseApp
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
     {
         $containerConfigurator->singleton(SocketDaemon::class, SocketDaemon::class);
-    }
-
-    protected function configDispatcher(EventDispatcherInterface $dispatcher): void
-    {
-
     }
 
 //    protected function createConsole(array $consoleCommands)
