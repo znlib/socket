@@ -40,47 +40,13 @@ abstract class BaseWebSocketApp extends BaseApp
         ];
     }
 
-    /*public function subscribes(): array
-    {
-        return [
-            ConsoleDetectTestEnvSubscriber::class,
-        ];
-    }*/
-
     public function import(): array
     {
         return ['i18next', 'container', 'console', 'migration', 'rbac', 'symfonyRpc', 'telegramRoutes'];
-    }
-
-    public function init(): void
-    {
-        parent::init();
-        $consoleCommands = $this->configManager->get('consoleCommands');
-//        $this->createConsole($consoleCommands);
     }
 
     protected function configContainer(ContainerConfiguratorInterface $containerConfigurator): void
     {
         $containerConfigurator->singleton(SocketDaemon::class, SocketDaemon::class);
     }
-
-//    protected function createConsole(array $consoleCommands)
-//    {
-//        $container = $this->getContainer();
-//
-//        /** @var Application $application */
-//        $application = $container->get(Application::class);
-//        $application->getDefinition()->addOptions([
-//            new InputOption(
-//                '--env',
-//                '-e',
-//                InputOption::VALUE_OPTIONAL,
-//                'The environment to operate in.',
-//                'DEV'
-//            )
-//        ]);
-//        if (!empty($consoleCommands)) {
-//            CommandHelper::registerFromNamespaceList($consoleCommands, $container, $application);
-//        }
-//    }
 }
