@@ -8,7 +8,7 @@ use ZnCore\Base\Libs\App\Interfaces\ConfigManagerInterface;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 use ZnCore\Base\Libs\App\Base\BaseApp;
-use ZnSandbox\Sandbox\App\Libs\ZnCore;
+use ZnCore\Base\Libs\App\Libs\ZnCore;
 use ZnLib\Console\Domain\Subscribers\ConsoleDetectTestEnvSubscriber;
 
 abstract class BaseWebSocketApp extends BaseApp

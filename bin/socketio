@@ -8,8 +8,8 @@ use ZnBundle\User\Domain\Services\AuthService3;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Apps\WebSocketApp;
 use ZnLib\Socket\Domain\Libs\SocketIoDaemon as SocketDaemon;
-use ZnSandbox\Sandbox\App\Libs\ZnCore;
-use ZnSandbox\Sandbox\App\Interfaces\AppInterface;
+use ZnCore\Base\Libs\App\Libs\ZnCore;
+use ZnCore\Base\Libs\App\Interfaces\AppInterface;
 
 define('MICRO_TIME', microtime(true));
 
