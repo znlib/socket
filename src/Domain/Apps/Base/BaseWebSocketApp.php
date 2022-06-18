@@ -7,9 +7,9 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use ZnCore\Base\Libs\App\Interfaces\ConfigManagerInterface;
 use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
-use ZnSandbox\Sandbox\App\Base\BaseApp;
+use ZnCore\Base\Libs\App\Base\BaseApp;
 use ZnSandbox\Sandbox\App\Libs\ZnCore;
-use ZnSandbox\Sandbox\App\Subscribers\ConsoleDetectTestEnvSubscriber;
+use ZnLib\Console\Domain\Subscribers\ConsoleDetectTestEnvSubscriber;
 
 abstract class BaseWebSocketApp extends BaseApp
 {
