@@ -6,9 +6,9 @@ use Workerman\Connection\ConnectionInterface;
 use Workerman\Worker;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnCore\Base\Exceptions\NotFoundException;
+use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
-use ZnCore\Base\Libs\Entity\Helpers\EntityHelper;
 use ZnLib\Socket\Domain\Entities\SocketEventEntity;
 use ZnLib\Socket\Domain\Enums\SocketEventEnum;
 use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;
@@ -110,7 +110,7 @@ class SocketDaemon
             $webconnections = $this->connectionRepository->allByUserId($userId);
             foreach ($webconnections as $webconnection) {
                 $this->sendToWebSocket($eventEntity, $webconnection);
-                echo 'send '.hash('crc32b', $data).' to ' . $userId . PHP_EOL;
+                echo 'send ' . hash('crc32b', $data) . ' to ' . $userId . PHP_EOL;
             }
         } catch (NotFoundException $e) {
         }
