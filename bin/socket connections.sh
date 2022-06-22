@@ -1,2 +1,5 @@
 #!/bin/sh
-php socket connections
+#php socket connections
+
+cd ../../../zncore/base/bin
+php zn socket:worker connections

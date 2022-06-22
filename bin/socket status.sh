@@ -1,2 +1,5 @@
 #!/bin/sh
-php socket status
+#php socket status
+
+cd ../../../zncore/base/bin
+php zn socket:worker status

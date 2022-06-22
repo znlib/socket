@@ -4,7 +4,7 @@
 use ZnLib\Socket\Domain\Entities\SocketEventEntity;
 use ZnLib\Socket\Domain\Enums\SocketEventEnum;
 use Symfony\Component\Console\Application;
-use ZnCore\Base\Libs\DotEnv\DotEnv;
+use ZnCore\Base\Libs\DotEnv\Domain\Libs\DotEnv;
 use Illuminate\Container\Container;
 
 use Symfony\Component\Console\Input\InputInterface;
