@@ -2,7 +2,7 @@
 
 namespace ZnLib\Socket\Domain\Apps;
 
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\DotEnv\Domain\Libs\DotEnv;
 use ZnLib\Socket\Domain\Apps\Base\BaseWebSocketApp;
 

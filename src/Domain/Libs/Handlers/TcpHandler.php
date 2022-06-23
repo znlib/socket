@@ -4,18 +4,10 @@ namespace ZnLib\Socket\Domain\Libs\Handlers;
 
 use Workerman\Connection\ConnectionInterface;
 use Workerman\Worker;
-use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnCore\Base\Libs\Measure\Enums\ByteEnum;
 use ZnCore\Domain\Entity\Exceptions\NotFoundException;
-use ZnCore\Contract\User\Exceptions\UnauthorizedException;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
-use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
-use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnLib\Socket\Domain\Entities\SocketEventEntity;
-use ZnLib\Socket\Domain\Enums\SocketEventEnum;
 use ZnLib\Socket\Domain\Libs\Transport;
 use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;
-use Workerman\Protocols\Http\Request;
 
 class TcpHandler
 {
@@ -50,9 +42,9 @@ class TcpHandler
             $webconnections = $this->connectionRepository->allByUserId($userId);
             foreach ($webconnections as $webconnection) {
                 $this->transport->sendToWebSocket($eventEntity, $webconnection);
-                echo 
-                    'send '.hash('crc32b', $data).
-                    ' to ' . $userId . 
+                echo
+                    'send ' . hash('crc32b', $data) .
+                    ' to ' . $userId .
 //                    ' ' . FileHelper::sizeFormat(mb_strlen(json_encode($eventEntity->getData()), '8bit')) .
                     PHP_EOL;
             }
