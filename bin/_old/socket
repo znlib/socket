@@ -15,7 +15,7 @@ define('MICRO_TIME', microtime(true));
 
 require __DIR__ . '/../../../autoload.php';
 
-\ZnCore\Base\Helpers\DeprecateHelper::hardThrow();
+\ZnCore\Base\Libs\Develop\Helpers\DeprecateHelper::hardThrow();
 
 $container = new Container();
 $znCore = new ZnCore($container);
