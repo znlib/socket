@@ -4,11 +4,11 @@ namespace ZnLib\Socket\Domain\Apps\Base;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
-use ZnCore\Base\Libs\ConfigManager\Interfaces\ConfigManagerInterface;
-use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
+use ZnCore\Base\ConfigManager\Interfaces\ConfigManagerInterface;
+use ZnCore\Base\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
-use ZnCore\Base\Libs\App\Base\BaseApp;
-use ZnCore\Base\Libs\App\Libs\ZnCore;
+use ZnCore\Base\App\Base\BaseApp;
+use ZnCore\Base\App\Libs\ZnCore;
 use ZnLib\Console\Domain\Subscribers\ConsoleDetectTestEnvSubscriber;
 
 abstract class BaseWebSocketApp extends BaseApp

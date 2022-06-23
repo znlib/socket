@@ -5,17 +5,17 @@ use Illuminate\Container\Container;
 use Psr\Container\ContainerInterface;
 use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
 use ZnBundle\User\Domain\Services\AuthService3;
-use ZnCore\Base\Libs\Container\Interfaces\ContainerConfiguratorInterface;
+use ZnCore\Base\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Apps\WebSocketApp;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
-use ZnCore\Base\Libs\App\Libs\ZnCore;
-use ZnCore\Base\Libs\App\Interfaces\AppInterface;
+use ZnCore\Base\App\Libs\ZnCore;
+use ZnCore\Base\App\Interfaces\AppInterface;
 
 define('MICRO_TIME', microtime(true));
 
 require __DIR__ . '/../../../autoload.php';
 
-\ZnCore\Base\Libs\Develop\Helpers\DeprecateHelper::hardThrow();
+\ZnCore\Base\Develop\Helpers\DeprecateHelper::hardThrow();
 
 $container = new Container();
 $znCore = new ZnCore($container);

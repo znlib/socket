@@ -2,8 +2,8 @@
 
 namespace ZnLib\Socket\Domain\Apps;
 
-use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
-use ZnCore\Base\Libs\DotEnv\Domain\Libs\DotEnv;
+use ZnCore\Base\Arr\Helpers\ArrayHelper;
+use ZnCore\Base\DotEnv\Domain\Libs\DotEnv;
 use ZnLib\Socket\Domain\Apps\Base\BaseWebSocketApp;
 
 class WebSocketApp extends BaseWebSocketApp
