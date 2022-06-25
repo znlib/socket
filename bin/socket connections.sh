@@ -1,5 +1,5 @@
 #!/bin/sh
 #php socket connections
 
-cd ../../../zncore/base/bin
+cd ../../../znlib/console/bin
 php zn socket:worker connections

@@ -1,5 +1,5 @@
 #!/bin/sh
 #php socket stop
 
-cd ../../../zncore/base/bin
+cd ../../../znlib/console/bin
 php zn socket:worker stop
