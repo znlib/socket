@@ -1,2 +1,5 @@
 #!/bin/sh
-php socketio start
+#php socket start
+
+cd ../../../znlib/console/bin
+php zn socketio:worker start

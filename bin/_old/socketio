@@ -7,15 +7,13 @@
 //use ZnBundle\User\Domain\Services\AuthService3;
 //use ZnCore\Base\Container\Interfaces\ContainerConfiguratorInterface;
 //use ZnLib\Socket\Domain\Apps\WebSocketApp;
-//use ZnLib\Socket\Domain\Libs\SocketDaemon;
+//use ZnLib\Socket\Domain\Libs\SocketIoDaemon as SocketDaemon;
 //use ZnCore\Base\App\Libs\ZnCore;
 //use ZnCore\Base\App\Interfaces\AppInterface;
 //
 //define('MICRO_TIME', microtime(true));
 //
 //require __DIR__ . '/../../../autoload.php';
-//
-//\ZnCore\Base\Develop\Helpers\DeprecateHelper::hardThrow();
 //
 //$container = new Container();
 //$znCore = new ZnCore($container);
@@ -27,13 +25,11 @@
 //$containerConfigurator->singleton(AppInterface::class, WebSocketApp::class);
 ///*$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
 //    $containerConfigurator->singleton(AppInterface::class, WebSocketApp::class);
-//
 //});*/
 //
 ///** @var AppInterface $appFactory */
 //$appFactory = $container->get(AppInterface::class);
 //$appFactory->init();
-//
 //
 //$containerConfigurator->singleton(AuthServiceInterface::class, AuthService3::class);
 ///*$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
