@@ -3,8 +3,8 @@
 
 //use Illuminate\Container\Container;
 //use Psr\Container\ContainerInterface;
-//use ZnBundle\User\Domain\Interfaces\Services\AuthServiceInterface;
-//use ZnBundle\User\Domain\Services\AuthService3;
+//use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
+//use ZnUser\Authentication\Domain\Services\AuthService3;
 //use ZnCore\Base\Container\Interfaces\ContainerConfiguratorInterface;
 //use ZnLib\Socket\Domain\Apps\WebSocketApp;
 //use ZnLib\Socket\Domain\Libs\SocketIoDaemon as SocketDaemon;
