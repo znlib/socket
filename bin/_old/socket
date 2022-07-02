@@ -4,7 +4,7 @@
 //use Illuminate\Container\Container;
 //use Psr\Container\ContainerInterface;
 //use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
-//use ZnUser\Authentication\Domain\Services\AuthService3;
+//use ZnUser\Authentication\Domain\Services\AuthService;
 //use ZnCore\Base\Container\Interfaces\ContainerConfiguratorInterface;
 //use ZnLib\Socket\Domain\Apps\WebSocketApp;
 //use ZnLib\Socket\Domain\Libs\SocketDaemon;
@@ -35,9 +35,9 @@
 //$appFactory->init();
 //
 //
-//$containerConfigurator->singleton(AuthServiceInterface::class, AuthService3::class);
+//$containerConfigurator->singleton(AuthServiceInterface::class, AuthService::class);
 ///*$znCore->addContainerConfig(function (ContainerConfiguratorInterface $containerConfigurator) {
-//    $containerConfigurator->singleton(AuthServiceInterface::class, AuthService3::class);
+//    $containerConfigurator->singleton(AuthServiceInterface::class, AuthService::class);
 //});*/
 //
 ///** @var SocketDaemon $daemon */
