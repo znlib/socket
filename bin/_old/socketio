@@ -1,15 +1,15 @@
 #!/usr/bin/env php
 <?php
 
-//use ZnCore\Base\Container\Libs\Container;
+//use ZnCore\Container\Libs\Container;
 //use Psr\Container\ContainerInterface;
 //use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
 //use ZnUser\Authentication\Domain\Services\AuthService;
-//use ZnCore\Base\Container\Interfaces\ContainerConfiguratorInterface;
+//use ZnCore\Container\Interfaces\ContainerConfiguratorInterface;
 //use ZnLib\Socket\Domain\Apps\WebSocketApp;
 //use ZnLib\Socket\Domain\Libs\SocketIoDaemon as SocketDaemon;
-//use ZnCore\Base\App\Libs\ZnCore;
-//use ZnCore\Base\App\Interfaces\AppInterface;
+//use ZnCore\App\Libs\ZnCore;
+//use ZnCore\App\Interfaces\AppInterface;
 //
 //define('MICRO_TIME', microtime(true));
 //
