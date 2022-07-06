@@ -4,7 +4,7 @@ namespace ZnLib\Socket\Domain\Apps\Base;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
-use ZnCore\Base\ConfigManager\Interfaces\ConfigManagerInterface;
+use ZnCore\ConfigManager\Interfaces\ConfigManagerInterface;
 use ZnCore\Container\Interfaces\ContainerConfiguratorInterface;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 use ZnCore\App\Base\BaseApp;

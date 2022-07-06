@@ -15,7 +15,7 @@
 //
 //require __DIR__ . '/../../../autoload.php';
 //
-//\ZnCore\Base\Develop\Helpers\DeprecateHelper::hardThrow();
+//\ZnCore\Code\Helpers\DeprecateHelper::hardThrow();
 //
 //$container = new Container();
 //$znCore = new ZnCore($container);
