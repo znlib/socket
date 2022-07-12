@@ -15,7 +15,7 @@ class WebSocketApp extends BaseWebSocketApp
             \ZnDatabase\Base\Bundle::class,
         ];
         if (DotEnv::get('BUNDLES_CONFIG_FILE')) {
-            $bundles = ArrayHelper::merge($bundles, include __DIR__ . '/../../../../../../' . DotEnv::get('BUNDLES_CONFIG_FILE'));
+            $bundles = ArrayHelper::merge($bundles, include DotEnv::get('BUNDLES_CONFIG_FILE'));
         }
         return $bundles;
     }
