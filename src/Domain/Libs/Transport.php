@@ -3,7 +3,7 @@
 namespace ZnLib\Socket\Domain\Libs;
 
 use Workerman\Connection\ConnectionInterface;
-use ZnCore\Entity\Helpers\EntityHelper;
+use ZnDomain\Entity\Helpers\EntityHelper;
 use ZnLib\Socket\Domain\Entities\SocketEventEntity;
 
 class Transport
