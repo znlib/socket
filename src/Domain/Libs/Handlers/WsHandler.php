@@ -5,7 +5,7 @@ namespace ZnLib\Socket\Domain\Libs\Handlers;
 use Workerman\Connection\ConnectionInterface;
 use Workerman\Worker;
 use ZnUser\Authentication\Domain\Interfaces\Services\AuthServiceInterface;
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use ZnCore\Contract\User\Exceptions\UnauthorizedException;
 use ZnCore\Contract\User\Interfaces\Entities\IdentityEntityInterface;
 use ZnDomain\Entity\Helpers\EntityHelper;

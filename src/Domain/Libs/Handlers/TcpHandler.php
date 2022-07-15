@@ -4,7 +4,7 @@ namespace ZnLib\Socket\Domain\Libs\Handlers;
 
 use Workerman\Connection\ConnectionInterface;
 use Workerman\Worker;
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use ZnLib\Socket\Domain\Entities\SocketEventEntity;
 use ZnLib\Socket\Domain\Libs\Transport;
 use ZnLib\Socket\Domain\Repositories\Ram\ConnectionRepository;

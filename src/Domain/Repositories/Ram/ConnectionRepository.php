@@ -2,7 +2,7 @@
 
 namespace ZnLib\Socket\Domain\Repositories\Ram;
 
-use ZnDomain\Entity\Exceptions\NotFoundException;
+use ZnCore\Contract\Common\Exceptions\NotFoundException;
 use Workerman\Connection\ConnectionInterface;
 
 class ConnectionRepository {
