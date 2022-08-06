@@ -30,7 +30,11 @@ class ConnectionRepository {
 
     public function addConnection(/*int*/ $userId, ConnectionInterface $connection) {
         $this->connectionTree[$userId][] = $connection;
-        echo 'online ' . $userId . ' - ' . count($this->connectionTree[$userId]) . PHP_EOL;
+        echo 'online ' . $this->formatMessage($userId) . PHP_EOL;
+    }
+    
+    private function formatMessage($userId) {
+        return '(ID: ' . $userId . ', count online: ' . count($this->connectionTree[$userId]) . ')';
     }
 
     public function remove(ConnectionInterface $connection) {
@@ -38,7 +42,7 @@ class ConnectionRepository {
             foreach ($userConnections as $connectionIndex => $conn) {
                 if($connection === $conn) {
                     unset($this->connectionTree[$userId][$connectionIndex]);
-                    echo 'online ' . $userId . ' - ' . count($this->connectionTree[$userId]) . PHP_EOL;
+                    echo 'offline ' . $this->formatMessage($userId) . PHP_EOL;
                     if(count($userConnections) == 0) {
                         unset($this->connectionTree[$userId]);
                     }

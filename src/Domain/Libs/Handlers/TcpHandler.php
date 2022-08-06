@@ -40,6 +40,7 @@ class TcpHandler
         // отправляем сообщение пользователю по userId
         try {
             $webconnections = $this->connectionRepository->allByUserId($userId);
+//            dump($webconnections);
             foreach ($webconnections as $webconnection) {
                 $this->transport->sendToWebSocket($eventEntity, $webconnection);
                 echo
