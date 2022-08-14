@@ -116,9 +116,12 @@ class SocketDaemon
         }
     }
 
-    public function runAll()
+    public function runAll(bool $daemon)
     {
         // Run worker
+        if($daemon) {
+            Worker::$daemonize = true;
+        }
         Worker::runAll();
     }
 

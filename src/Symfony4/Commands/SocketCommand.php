@@ -5,6 +5,7 @@ namespace ZnLib\Socket\Symfony4\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption as Option;
 use Symfony\Component\Console\Output\OutputInterface;
 use ZnLib\Socket\Domain\Libs\SocketDaemon;
 
@@ -23,6 +24,12 @@ class SocketCommand extends Command
     protected function configure()
     {
         $this->addArgument('workerCommand', InputArgument::OPTIONAL);
+        $this->addOption(
+            'daemon',
+            'd',
+            Option::VALUE_NONE,
+            'Run as daemon'
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -39,7 +46,9 @@ class SocketCommand extends Command
             $argv[1] = 'status';
         }*/
 
-        $this->socketDaemon->runAll();
+        $daemon = $input->getOption('daemon');
+
+        $this->socketDaemon->runAll($daemon);
 
         return Command::SUCCESS;
     }
